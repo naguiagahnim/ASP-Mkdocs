@@ -24,4 +24,3 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - run: nix develop -c mkdocs gh-deploy --force
-        working-directory: ./Notes-Mkdocs
