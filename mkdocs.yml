@@ -1,0 +1,34 @@
+site_name: "Notes de stage - Laboratoire Numérique de l'ASP"
+site_description: "Notes sous la forme de MKDocs, prises durant mon stage"
+theme:
+  name: material
+  logo: assets/images/pfp.png
+  favicon: assets/images/pfp.png
+  language: fr
+  palette: 
+    - scheme: default
+      primary: pink
+      accent: pink
+      toggle:
+        icon: material/weather-sunny
+        name: Passer au mode nuit
+    - scheme: slate
+      primary: pink
+      accent: pink
+      toggle:
+        icon: material/weather-night
+        name: Passer au mode jour
+nav:
+  - Accueil: index.md
+  - Présentation de l'ASP:
+    - Présentation de l'ASP et du labo: 1-presentation-asp/Presentation.md
+    - Méthodologie: 1-presentation-asp/Methodologie.md
+  - Documentation:
+      - Semaine 1: 2-recherche-chatbots/documentation/Semaine-1.md
+      - Semaine 2: 2-recherche-chatbots/documentation/Semaine-2.md
+      - Technologies: 2-recherche-chatbots/documentation/Technos/Technologies.md
+  - Prototypage:
+    - Chatbot déterministe: 3-prototypage/deterministe.md
+plugins:
+  - search   
+  - mkdocstrings
