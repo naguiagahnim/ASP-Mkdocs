@@ -36,3 +36,27 @@ la FAQ à "manger".
   ![L'écran de discussion principal](../assets/images/demo/deter/init2.png){ width="300" align=left }
   <figcaption>Les images sont, bien heureusement, cliquables.</figcaption>
 </figure>
+
+L'algorithme de sélection actuel, peu développé, ressemble à ceci.
+
+```rust
+pub fn trouver_reponse(message: &str, data: &ResponsesData) -> String {
+    for section in &data.sections {
+        for question in &section.questions {
+            if message.to_lowercase() == question.bouton.to_lowercase() {
+                return question.reponse.clone();
+            }
+        }
+    }
+
+    for libre in &data.reponses_libres {
+        for declencheur in &libre.declencheurs {
+            if message.to_lowercase().contains(&declencheur.to_lowercase()) {
+                return libre.reponse.clone();
+            }
+        }
+    }
+
+    "Je ne peux pas répondre à cette question.".to_string()
+}
+```
