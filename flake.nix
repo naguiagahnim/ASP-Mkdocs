@@ -17,6 +17,7 @@
         python314Packages.mkdocs
         python314Packages.mkdocs-material
         python314Packages.mkdocstrings
+        python314Packages.mkdocs-glightbox
       ];
 
       shellHook = ''

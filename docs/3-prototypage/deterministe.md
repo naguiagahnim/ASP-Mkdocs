@@ -23,3 +23,16 @@ contenu dans la question est présent dans une liste de déclencheurs pouvant
 déclencher telle ou telle réponse. L'ordre de priorité est donc défini par
 l'ordre dans lequel les questions sont insérées dans le fichier JSON les
 contenant.
+
+## Implémentations
+
+### Premier jet
+
+Voici à quoi ressemble le prototype non fonctionnel du bot, avant de lui donner
+la FAQ à "manger".
+
+<figure markdown="span">
+  ![Champ de nom d'utilisateur](../assets/images/demo/deter/init1.png){ width="300" align=left }
+  ![L'écran de discussion principal](../assets/images/demo/deter/init2.png){ width="300" align=left }
+  <figcaption>Les images sont, bien heureusement, cliquables.</figcaption>
+</figure>
