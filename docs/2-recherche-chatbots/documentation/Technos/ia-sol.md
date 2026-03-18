@@ -16,4 +16,3 @@ RDV effectué le 11 mars 2026.
 
 ### Désavantages
   - Difficilement modulable : on glisse un document ou renseigne un site et la magie opère
-  - Il est incertain s'il est déjà arrivé que qqun a déjà fait "dérailler" le LLM
