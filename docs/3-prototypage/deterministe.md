@@ -66,7 +66,7 @@ Les cas où le chatbot répond "librement" restent relativement limités.
 ### Implémentation finale
 
 Nous avons implémenté une solution de traçage des performances et de journalisation avec `tracing`. Cette solution s'intègre avec des outils tels que la crate `log`, `tracing-opentelemetry`, `tracy`, qui garantissent une bonne intégration avec des outils de déploiement tels que `Prometheus` ou `Grafana`.
-La sortie du programme pourrait ressembler à ceci :
+La sortie du programme ressemble de manière générale à ceci :
 ```bash
 
 [2026-03-18T14:38:46Z INFO  tracing::span] Chargement des réponses depuis le fichier Json;
