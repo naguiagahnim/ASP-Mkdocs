@@ -94,8 +94,13 @@ fn trouver_reponse(
         derniere_question: &RwLock<Option<String>>,
     ) -> Option<String> {
         let msg = message.to_lowercase();
-        let span = span!(Level::INFO, "Recherche d'une réponse adaptée");
-        let _guard = span.enter();
+        let _span = span!(
+            Level::INFO,
+            "Keyword Finder : Recherche d'une réponse adaptée"
+        );
+        let _guard = _span.enter();
+
+        info!("Message reçu : {}", message);
 
         if ["hein", "quoi", "comment", "pas compris"]
             .iter()
@@ -105,19 +110,30 @@ fn trouver_reponse(
             return Some(format!("Je pensais que vous demandiez : \"{q}\""));
         }
 
+        for reponse_libre in &self.responses.reponses_libres {
+            for declencheur in &reponse_libre.declencheurs {
+                if msg.contains(declencheur) {
+                    info!("Match réponse libre : {}", declencheur);
+                    return Some(reponse_libre.reponse.clone());
+                }
+            }
+        }
+
         let mut best_score = 0;
         let mut best_answer: Option<&String> = None;
         let mut best_question: Option<&String> = None;
+
+        let message_mots = nettoyer(message);
+        info!("Mots-clés du message : {:?}", message_mots);
 
         for section in &self.responses.sections {
             for question in &section.questions {
                 let mut score = 0;
 
-                let message_mots = nettoyer(message);
                 let question_mots = nettoyer(&question.bouton);
 
-                for mot in message_mots {
-                    if question_mots.contains(&mot) {
+                for mot in &message_mots {
+                    if question_mots.contains(mot) {
                         score += 1;
                     }
                 }
@@ -130,6 +146,13 @@ fn trouver_reponse(
             }
         }
 
+        info!(
+            "Meilleur score : {} pour \"{}\" en réponse à \"{}\"",
+            best_score,
+            best_answer.unwrap_or(&"Inconnu".to_string()),
+            best_question.unwrap_or(&"Inconnu".to_string())
+        );
+
         if best_score >= 2 {
             *derniere_question.write().unwrap() = best_question.cloned();
             return best_answer.cloned();
@@ -138,3 +161,27 @@ fn trouver_reponse(
     }
 ```
 Comme nous pouvons le constater, nous avons "généralisé" le code effectuant la tâche susmentionnée en utilisant un `trait`, soit une sorte d'interface propre au Rust. Cela nous permet ainsi d'implémenter plusieurs structures dont la logique de recherche de réponses seront différentes, tout en respectant le principe d'extensibilité ; nous pourrions comparer cette approche avec, notamment, le pattern dit "builder".
+
+L'algorithme de keyword matching que nous avons développé repose sur une approche en deux temps pour maximiser les chances de
+trouver une réponse pertinente. Lorsqu'un utilisateur soumet une question, le système commence par interroger la base de
+réponses libres, qui contient des déclencheurs associés à des réponses prédéfinies. Cette première passe permet de capturer les
+salutations, les remerciements et autres formulations courantes qui ne nécessitent pas une analyse poussée du contenu.
+
+Si aucune correspondance n'est trouvée dans les réponses libres, l'algorithme procède alors à une analyse plus fine du message en
+le découpant en mots-clés significatifs. Cette étape de nettoyage consiste à mettre le texte en minuscules, retirer les caractères
+ spéciaux et filtrer les mots-outils peu pertinents comme les articles ou les déterminants. Chaque mot restant est ensuite comparé
+ aux mots-clés extraits des questions prédéfinies de la base de connaissances.
+
+Le cœur du système repose sur un mécanisme de scoring qui attribue des points à chaque question en fonction du nombre de mots-clés
+ communs avec la requête de l'utilisateur. La question obtenant le meilleur score est sélectionnée, à condition que ce score
+atteigne un seuil minimal de deux correspondances. Ce seuil garantit que la réponse proposée n'est pas le fruit d'une coïncidence
+fortuite, mais reflète une véritable similarité sémantique entre la question posée et la question de référence.
+
+Pour enrichir l'expérience utilisateur, le système conserve en mémoire la dernière question traitée, ce qui lui permet de
+reformuler son incompréhension lorsque l'utilisateur signale ne pas avoir saisi la réponse précédente. Cette fonctionnalité nous sert donc, dans ce contexte, de garde-fou en cas de réponse incorrecte.
+
+### Conclusions
+L'implémentation d'une solution de mots-clefs pour une telle solution se révèle fortement insuffisante, du fait de plusieurs facteurs ; nous pourrions ainsi évoquer la faiblesse du jeu de données sur lequel l'algorithme se base, qui gagnerait à être étoffé. De plus, cette solution reste globalement inefficace dans le cadre d'une conversation avec une personne ; le chatbot a du mal à attribuer les points ou ne peut simplement pas répondre, même après "nettoyage" des questions posées.
+Le chatbot parvient donc à répondre convenablement majoritairement lors de l'utilisation des boutons contenant les réponses prédéfinies. Toutefois, pour une telle utilisation, il serait préférable non seulement pour l'ASP mais aussi pour les utilisateurs d'utiliser une FAQ "classique", avec possibilité de recherche dans les questions au travers d'un filtre de type "fuzzy" par exemple.
+L'utilisation d'une telle solution ne justifie donc pas l'utilisation d'un chatbot.
+
