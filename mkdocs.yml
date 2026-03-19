@@ -7,7 +7,7 @@ theme:
   language: fr
   features:
     - content.code.copy
-  palette: 
+  palette:
     - scheme: default
       primary: pink
       accent: pink
@@ -23,20 +23,21 @@ theme:
 nav:
   - Accueil: index.md
   - Présentation de l'ASP:
-    - Présentation de l'ASP et du labo: 1-presentation-asp/Presentation.md
-    - Méthodologie: 1-presentation-asp/Methodologie.md
+      - Présentation de l'ASP et du labo: 1-presentation-asp/Presentation.md
+      - Méthodologie: 1-presentation-asp/Methodologie.md
   - Documentation:
       - Semaine 1: 2-recherche-chatbots/documentation/Semaine-1.md
       - Semaine 2: 2-recherche-chatbots/documentation/Semaine-2.md
       - Technologies: 2-recherche-chatbots/documentation/Technos/Technologies.md
       - Solutions IA: 2-recherche-chatbots/documentation/Technos/ia-sol.md
   - Prototypage:
-    - Chatbot déterministe: 3-prototypage/deterministe.md
+      - Chatbot déterministe: 3-prototypage/deterministe.md
+      - Chatbot à base de recherche: 3-prototypage/retrieval.md
 plugins:
-  - search   
+  - search
   - mkdocstrings
   - glightbox
-markdown_extensions: 
+markdown_extensions:
   - attr_list
   - md_in_html
   - pymdownx.blocks.caption
@@ -47,4 +48,3 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
-
