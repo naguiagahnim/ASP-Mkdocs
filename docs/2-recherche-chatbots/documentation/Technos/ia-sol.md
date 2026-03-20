@@ -16,3 +16,6 @@ RDV effectué le 11 mars 2026.
 
 ### Désavantages
   - Difficilement modulable : on glisse un document ou renseigne un site et la magie opère
+
+## Wikit
+Demander si leur truc génère des images
