@@ -58,9 +58,9 @@ FAQ associées et métadonnées. Voici la structure détaillée d'un fichier JSO
 
 | Champ | Type | Description |
 |-------|------|-------------|
-| `id` | string | Identifiant unique de l'entrée (ex: `asp_esat_guide`) |
-| `domain` | string | Domaine thématique (ex: `social`, `santé`, `agriculture`) |
-| `intent` | string | Intention utilisateur principale (ex: `guide_utilisation`, `demande_info`) |
+| `id` | string | Identifiant unique de l'entrée (ex : `asp_esat_guide`) |
+| `domain` | string | Domaine thématique (ex : `social`, `santé`, `agriculture`) |
+| `intent` | string | Intention utilisateur principale (ex : `guide_utilisation`, `demande_info`) |
 | `category` | string | Catégorie administrative ou fonctionnelle |
 
 #### Champs de contenu
@@ -180,10 +180,10 @@ Les poids par champ sont configurés comme suit :
 |-------|-------|---------------|
 | `keywords` | 3.0 | Les mots-clés sont les plus pertinents |
 | `summary` | 2.0 | Le résumé contient l'essentiel |
-| `procedure` | 1.5 | Les étapes sont importantes mais secondaires |
+| `procedure` | 1.5 | Les étapes sont importantes, mais secondaires |
 | `domain` | 1.5 | Le domaine aide à filtrer le contexte |
 | `intent` | 1.5 | L'intention guide la recherche |
-| `faq` | 1.0 | Les FAQ sont utiles mais moins prioritaires |
+| `faq` | 1.0 | Les FAQ sont utiles, mais moins prioritaires |
 
 #### 2. Indexation des entrées
 
