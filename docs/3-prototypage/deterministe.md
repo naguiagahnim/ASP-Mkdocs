@@ -182,6 +182,6 @@ reformuler son incompréhension lorsque l'utilisateur signale ne pas avoir saisi
 
 ### Conclusions
 L'implémentation d'une solution de mots-clefs pour une telle solution se révèle fortement insuffisante, du fait de plusieurs facteurs ; nous pourrions ainsi évoquer la faiblesse du jeu de données sur lequel l'algorithme se base, qui gagnerait à être étoffé. De plus, cette solution reste globalement inefficace dans le cadre d'une conversation avec une personne ; le chatbot a du mal à attribuer les points ou ne peut simplement pas répondre, même après "nettoyage" des questions posées.
-Le chatbot parvient donc à répondre convenablement majoritairement lors de l'utilisation des boutons contenant les réponses prédéfinies. Toutefois, pour une telle utilisation, il serait préférable non seulement pour l'ASP mais aussi pour les utilisateurs d'utiliser une FAQ "classique", avec possibilité de recherche dans les questions au travers d'un filtre de type "fuzzy" par exemple.
+Le chatbot parvient ainsi à répondre convenablement majoritairement lors de l'utilisation des boutons contenant les réponses prédéfinies. Toutefois, pour une telle utilisation, il serait préférable non seulement pour l'ASP mais aussi pour les utilisateurs d'utiliser une FAQ "classique", avec possibilité de recherche dans les questions au travers d'un filtre de type "fuzzy" par exemple.
 L'utilisation d'une telle solution ne justifie donc pas l'utilisation d'un chatbot.
 
