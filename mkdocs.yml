@@ -34,6 +34,7 @@ nav:
   - Prototypage:
       - Chatbot déterministe: 3-prototypage/deterministe.md
       - Chatbot à base de recherche: 3-prototypage/retrieval.md
+      - Chatbot hybride: 3-prototypage/final.md
 plugins:
   - search
   - mkdocstrings
